@@ -1,9 +1,9 @@
-FROM debian:stable-slim AS dnsmasq-builder
+FROM debian:9.8-slim AS dnsmasq-builder
 
 RUN dpkg --add-architecture amd64 \
  && apt-get update \
- && apt-get -y install git make libc6-dev:amd64 gcc:amd64 \
- && git clone -b master git://thekelleys.org.uk/dnsmasq.git /root/dnsmasq \
+ && apt-get -y install git make libc6-dev:amd64 gcc \
+ && git clone -b v2.80 git://thekelleys.org.uk/dnsmasq.git /root/dnsmasq \
  && cd /root/dnsmasq/ \
  && CC=gcc make install
 
